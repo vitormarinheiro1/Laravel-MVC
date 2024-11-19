@@ -12,7 +12,8 @@ class SeriesController extends Controller
     {
         // $series = DB::select('SELECT name FROM series;');
 
-        $series = Serie::all();
+        // $series = Serie::all();
+        $series = Serie::query()->orderBy('name')->get();
 
         return view('series.index')->with('series', $series);
     }
@@ -24,9 +25,9 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        
+
         // DB::insert('INSERT INTO series (name) VALUES (?)', [$nomeSerie]);
-        
+
         $nomeSerie = $request->input('name');
         $serie = new Serie();
         $serie->name = $nomeSerie;
