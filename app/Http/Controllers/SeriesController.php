@@ -28,11 +28,19 @@ class SeriesController extends Controller
 
         // DB::insert('INSERT INTO series (name) VALUES (?)', [$nomeSerie]);
 
-        $nomeSerie = $request->input('name');
-        $serie = new Serie();
-        $serie->name = $nomeSerie;
-        $serie->save();
+        // $nomeSerie = $request->name;
+        // $serie = new Serie();
+        // $serie->name = $nomeSerie;
+        // $serie->save();
 
-        return redirect('/series');
+        // adiciona somente os campos que eu adicionar
+        // Serie::create($request->only(['nome', 'sinopse']));
+        
+        // busca tudo com exceção do token
+        // Serie::create($request->except(['_token']));
+
+        Serie::create($request->all());
+
+        return to_route('series.index');
     }
 }
